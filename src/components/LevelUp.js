@@ -5,6 +5,8 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 
+export const host = "http://localhost:8000"
+
 export const LevelUp = () => (
     <>
         <Route render={() => {
