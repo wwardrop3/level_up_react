@@ -108,11 +108,13 @@ export const EventForm = () => {
                 type="submit"
                 className="btn btn-2 btn-sep icon-create"
                 onClick={
-                    () => {
+                    (evt) => {
+                        evt.preventDefault() //stops the entire page from reloading
                         let check = handleButton()
                         console.log(currentEvent)
-                        eventId ? updateEvent(currentEvent) : createEvent(currentEvent)
-                        history.push("/events")
+                        eventId ? updateEvent(currentEvent).then(() => history.push("/events")) : createEvent(currentEvent).then(() => history.push("/events"))
+                    
+                       
 
                     }
                     

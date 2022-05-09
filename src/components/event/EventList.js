@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom"
-import { deleteEvent, getEvents } from "./EventManager"
+import { deleteEvent, getEvents, joinEvent, leaveEvent } from "./EventManager"
 
 
 export const EventList = () => {
@@ -25,6 +25,9 @@ export const EventList = () => {
         },[refresh, url]
     )
 
+    const handleJoin = (eventId) => {
+
+    }
 
 
     return(
@@ -38,6 +41,7 @@ export const EventList = () => {
         <article className="events">
             {
                 events.map(event => {
+                    
                     return <section className="game" key={`${event.id}`}>
                         <div className="game_title">A game of {event.game.title} is being played on {event.date} {event.description}</div>
                         
@@ -61,6 +65,23 @@ export const EventList = () => {
                     }
                 }
                 >Delete</button>
+                
+                <button className="btn btn-2 btn-sep icon-create"
+                onClick={
+                    (evt) => {
+                        event.joined ? leaveEvent(event.id).then(() => setRefresh(!refresh)) : joinEvent(event.id)
+                        .then(
+                            () => {
+                                setRefresh(!refresh)
+                            }
+                        )
+                }
+            }
+        
+        
+
+                        
+                >{event.joined ? "Leave" : "Join"}</button>
 
                     </section>
                 })

@@ -52,3 +52,24 @@ export const deleteEvent = (id) => {
         }
     })
 }
+
+export const leaveEvent = (eventId) => {
+    return fetch(`${host}/events/${eventId}/leave`,
+    {method: "DELETE",
+    headers: {
+        "Authorization": `Token ${localStorage.getItem("lu_token")}`
+    } 
+}
+    
+    )
+}
+
+export const joinEvent = (eventId) => {
+    return fetch(`${host}/events/${eventId}/signup`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Content-Type": "application/json"
+        }
+    })
+}
